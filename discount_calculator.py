@@ -4,9 +4,34 @@ def calculate_discount(item_cost, relative_discount, absolute_discount):
 	First relative_discount is applied then absolute_discount is
 	applied, final purchase price is the then returned (price)
 	"""
-	discount_1 = item_cost * (1-relative_discount)
-	price = discount_1 * (1-absolute_discount)
+	if relative_discount > 1. or absolute_discount > 1:
+		raise ValueError("Discounts cannot be above 100%")
+
+	if relative_discount < 0 or absolute_discount < 0:
+		raise ValueError("Discounts cannot be negative!")
+
+	price = item_cost
+
+	discount_1 = price * relative_discount
+
+	if discount_1 == price:
+		price = 0
+		return price
+
+	price= price - discount_1
+	
+	discount_2 = price * absolute_discount
+
+	if discount_2 == price:
+		price = 0
+		return price
+
+	price = price - discount_2
+
 	return price
+
+
+
 
 
 def main():
