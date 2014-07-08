@@ -30,12 +30,8 @@ def calculate_discount(item_cost, relative_discount, absolute_discount):
 
 	return price
 
-
-
-
-
 def main():
-	print calculate_discount(100,.1,.1)
+	print calculate_discount(100,.5,1.6)
 
 
 if __name__ == '__main__':

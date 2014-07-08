@@ -18,15 +18,19 @@ class DiscountCalculatorTests(unittest.TestCase):
 
         self.assertEqual(price,90)
 
-    def testpriceNotNegative(self):
-        price = calculate_discount(100,1,.9)
+    def testAbs100_Percent(self):
+        price = calculate_discount(100,0,1)
 
-        self.assertGreater(price,0)
+        self.assertEqual(price,0)
+
+    def testRel100_Percent(self):
+        price = calculate_discount(100,1,0)
+
+        self.assertEqual(price,0)
 
     def testPercAbove100(self):
-    	initial_price = 100.
     	with self.assertRaises(ValueError):
-	        price = calculate_discount(initial_price,1.5,5.)
+	        price = calculate_discount(100,1.5,5.)
 
     
 if __name__ == '__main__':
